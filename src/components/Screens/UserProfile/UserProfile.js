@@ -145,7 +145,7 @@ const UserProfile  = ()=>{
        </div>
        
        
-       : <h2>loading...!</h2>}
+       : <h2 style={{textAlign:"center"}}>loading...!</h2>}
        
        </>
    )
