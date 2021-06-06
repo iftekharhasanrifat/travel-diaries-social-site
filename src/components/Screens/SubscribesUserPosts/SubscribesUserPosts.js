@@ -128,16 +128,15 @@ const SubscribesUserPosts  = ()=>{
                                 <img alt="" src={item.photo}/>
                             </div>
                             <div className="card-content">
-                            <i className="material-icons" style={{color:"red"}}>favorite</i>
                             {item.likes.includes(state._id)
                             ? 
                              <i className="material-icons"
                                     onClick={()=>{unlikePost(item._id)}}
-                              >thumb_down</i>
+                                    style={{color:"red"}}>favorite</i>
                             : 
                             <i className="material-icons"
                             onClick={()=>{likePost(item._id)}}
-                            >thumb_up</i>
+                            >favorite_border</i>
                             }
                             
                            
