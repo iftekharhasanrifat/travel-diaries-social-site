@@ -7,9 +7,10 @@ const Home  = ()=>{
       return state.users;
     })
     useEffect(()=>{
-       fetch('/allpost',{
+       fetch('https://vast-river-59602.herokuapp.com/allpost',{
            headers:{
-               "Authorization":"Bearer "+localStorage.getItem("jwt")
+               "Authorization":"Bearer "+localStorage.getItem("jwt"),
+            //    'Accept': 'application/json'
            }
        }).then(res=>res.json())
        .then(result=>{
@@ -19,7 +20,7 @@ const Home  = ()=>{
     },[])
 
     const likePost = (id)=>{
-          fetch('/like',{
+          fetch('https://vast-river-59602.herokuapp.com/like',{
               method:"put",
               headers:{
                   "Content-Type":"application/json",
@@ -43,7 +44,7 @@ const Home  = ()=>{
           })
     }
     const unlikePost = (id)=>{
-          fetch('/unlike',{
+          fetch('https://vast-river-59602.herokuapp.com/unlike',{
               method:"put",
               headers:{
                   "Content-Type":"application/json",
@@ -55,7 +56,7 @@ const Home  = ()=>{
           }).then(res=>res.json())
           .then(result=>{
             const newData = data.map(item=>{
-                if(item._id==result._id){
+                if(item._id===result._id){
                     return result
                 }else{
                     return item
@@ -68,7 +69,7 @@ const Home  = ()=>{
     }
 
     const makeComment = (text,postId)=>{
-          fetch('/comment',{
+          fetch('https://vast-river-59602.herokuapp.com/comment',{
               method:"put",
               headers:{
                   "Content-Type":"application/json",
@@ -82,7 +83,7 @@ const Home  = ()=>{
           .then(result=>{
               console.log(result)
               const newData = data.map(item=>{
-                if(item._id==result._id){
+                if(item._id===result._id){
                     return result
                 }else{
                     return item
@@ -95,7 +96,7 @@ const Home  = ()=>{
     }
 
     const deletePost = (postid)=>{
-        fetch(`/deletepost/${postid}`,{
+        fetch(`https://vast-river-59602.herokuapp.com/deletepost/${postid}`,{
             method:"delete",
             headers:{
                 Authorization:"Bearer "+localStorage.getItem("jwt")
@@ -112,10 +113,10 @@ const Home  = ()=>{
    return (
        <div className="home">
            {
-               data.map(item=>{
+               data?.map(item=>{
                    return(
                        <div className="card home-card" key={item._id}>
-                            <h5 style={{padding:"5px"}}><Link to={item.postedBy._id !== state._id?"/profile/"+item.postedBy._id :"/profile"  }>{item.postedBy.name}</Link> {item.postedBy._id == state._id 
+                            <h5 style={{padding:"10px"}}><Link to={item.postedBy._id !== state._id?"/profile/"+item.postedBy._id :"/profile"  }>{item.postedBy.name}</Link> {item.postedBy._id === state._id 
                             && <i className="material-icons" style={{
                                 float:"right"
                             }} 
@@ -124,19 +125,18 @@ const Home  = ()=>{
 
                             }</h5>
                             <div className="card-image">
-                                <img src={item.photo}/>
+                                <img alt="" src={item.photo}/>
                             </div>
                             <div className="card-content">
-                            <i className="material-icons" style={{color:"red"}}>favorite</i>
                             {item.likes.includes(state._id)
                             ? 
                              <i className="material-icons"
                                     onClick={()=>{unlikePost(item._id)}}
-                              >thumb_down</i>
+                                    style={{color:"red"}}>favorite</i>
                             : 
                             <i className="material-icons"
                             onClick={()=>{likePost(item._id)}}
-                            >thumb_up</i>
+                            >favorite_border</i>
                             }
                             
                            
@@ -162,8 +162,6 @@ const Home  = ()=>{
                    )
                })
            }
-          
-          
        </div>
    )
 }

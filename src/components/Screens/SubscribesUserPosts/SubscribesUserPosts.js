@@ -7,7 +7,7 @@ const SubscribesUserPosts  = ()=>{
       return state.users;
     })
     useEffect(()=>{
-       fetch('/getsubpost',{
+       fetch('https://vast-river-59602.herokuapp.com/getsubpost',{
            headers:{
                "Authorization":"Bearer "+localStorage.getItem("jwt")
            }
@@ -19,7 +19,7 @@ const SubscribesUserPosts  = ()=>{
     },[])
 
     const likePost = (id)=>{
-          fetch('/like',{
+          fetch('https://vast-river-59602.herokuapp.com/like',{
               method:"put",
               headers:{
                   "Content-Type":"application/json",
@@ -32,7 +32,7 @@ const SubscribesUserPosts  = ()=>{
           .then(result=>{
                    //   console.log(result)
             const newData = data.map(item=>{
-                if(item._id==result._id){
+                if(item._id===result._id){
                     return result
                 }else{
                     return item
@@ -44,7 +44,7 @@ const SubscribesUserPosts  = ()=>{
           })
     }
     const unlikePost = (id)=>{
-          fetch('/unlike',{
+          fetch('https://vast-river-59602.herokuapp.com/unlike',{
               method:"put",
               headers:{
                   "Content-Type":"application/json",
@@ -55,9 +55,8 @@ const SubscribesUserPosts  = ()=>{
               })
           }).then(res=>res.json())
           .then(result=>{
-            //   console.log(result)
             const newData = data.map(item=>{
-                if(item._id==result._id){
+                if(item._id===result._id){
                     return result
                 }else{
                     return item
@@ -70,7 +69,7 @@ const SubscribesUserPosts  = ()=>{
     }
 
     const makeComment = (text,postId)=>{
-          fetch('/comment',{
+          fetch('https://vast-river-59602.herokuapp.com/comment',{
               method:"put",
               headers:{
                   "Content-Type":"application/json",
@@ -84,7 +83,7 @@ const SubscribesUserPosts  = ()=>{
           .then(result=>{
               console.log(result)
               const newData = data.map(item=>{
-                if(item._id==result._id){
+                if(item._id===result._id){
                     return result
                 }else{
                     return item
@@ -97,7 +96,7 @@ const SubscribesUserPosts  = ()=>{
     }
 
     const deletePost = (postid)=>{
-        fetch(`/deletepost/${postid}`,{
+        fetch(`https://vast-river-59602.herokuapp.com/deletepost/${postid}`,{
             method:"delete",
             headers:{
                 Authorization:"Bearer "+localStorage.getItem("jwt")
@@ -117,7 +116,7 @@ const SubscribesUserPosts  = ()=>{
                data.map(item=>{
                    return(
                        <div className="card home-card" key={item._id}>
-                            <h5 style={{padding:"5px"}}><Link to={item.postedBy._id !== state._id?"/profile/"+item.postedBy._id :"/profile"  }>{item.postedBy.name}</Link> {item.postedBy._id == state._id 
+                            <h5 style={{padding:"5px"}}><Link to={item.postedBy._id !== state._id?"/profile/"+item.postedBy._id :"/profile"  }>{item.postedBy.name}</Link> {item.postedBy._id === state._id 
                             && <i className="material-icons" style={{
                                 float:"right"
                             }} 
@@ -126,7 +125,7 @@ const SubscribesUserPosts  = ()=>{
 
                             }</h5>
                             <div className="card-image">
-                                <img src={item.photo}/>
+                                <img alt="" src={item.photo}/>
                             </div>
                             <div className="card-content">
                             <i className="material-icons" style={{color:"red"}}>favorite</i>

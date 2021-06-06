@@ -1,17 +1,15 @@
 import React,{useEffect,useState} from 'react'
 import {updateData} from '../../../redux/action/userAction'
 import {useParams} from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 const UserProfile  = ()=>{
     const [userProfile,setProfile] = useState(null)
-    const state = useSelector((state)=>{
-      return state.users;
-    })
     const dispatch = useDispatch();
     const {userid} = useParams()
     const [showfollow,setShowFollow] = useState(true)
+    const signedInUser = JSON.parse(localStorage.getItem('user')); 
     useEffect(()=>{
-       fetch(`/user/${userid}`,{
+       fetch(`https://vast-river-59602.herokuapp.com/user/${userid}`,{
            headers:{
                "Authorization":"Bearer "+localStorage.getItem("jwt")
            }
@@ -24,7 +22,7 @@ const UserProfile  = ()=>{
 
 
     const followUser = ()=>{
-        fetch('/follow',{
+        fetch('https://vast-river-59602.herokuapp.com/follow',{
             method:"put",
             headers:{
                 "Content-Type":"application/json",
@@ -52,7 +50,7 @@ const UserProfile  = ()=>{
         })
     }
     const unfollowUser = ()=>{
-        fetch('/unfollow',{
+        fetch('https://vast-river-59602.herokuapp.com/unfollow',{
             method:"put",
             headers:{
                 "Content-Type":"application/json",
@@ -105,7 +103,7 @@ const UserProfile  = ()=>{
                        <h6>{userProfile.user.followers.length} followers</h6>
                        <h6>{userProfile.user.following.length} following</h6>
                    </div>
-                   {showfollow?
+                   {!signedInUser.following.includes(userid)?
                    <button style={{
                        margin:"10px"
                    }} className="btn waves-effect waves-light #64b5f6 blue darken-1"
@@ -144,7 +142,7 @@ const UserProfile  = ()=>{
        </div>
        
        
-       : <h2>loading...!</h2>}
+       : <h2 style={{textAlign:"center"}}>loading...!</h2>}
        
        </>
    )

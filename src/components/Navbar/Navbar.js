@@ -18,19 +18,29 @@ const NavBar = ()=>{
      const renderList = ()=>{
        if(user){
            return [
-            <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>,
-            <li key="2"><Link to="/profile">Profile</Link></li>,
-            <li key="3"><Link to="/create">Create Post</Link></li>,
-            <li key="4"><Link to="/myfollowingpost">My following Posts</Link></li>,
-            <li  key="5">
-             <button className="btn #c62828 red darken-3"
+            <li key="1"><span data-target="modal1" className="material-icons modal-trigger">
+            search
+            </span></li>,
+            <li className="navLink" key="2"><Link to="/profile"><span className="material-icons">
+            face
+            </span></Link></li>,
+            <li className="navLink" key="3"><Link to="/create"><span className="material-icons">
+            post_add
+            </span></Link></li>,
+            <li className="navLink" key="4"><Link to="/myfollowingpost"><span className="material-icons">
+            favorite
+            </span></Link></li>,
+            <li className="navLink" key="5">
+             <button className="log_button"
             onClick={()=>{
               localStorage.clear()
               dispatch(clearUser())
               history.push('/signin')
             }}
             >
-                Logout
+                <span class="material-icons">
+logout
+</span>
             </button>
             </li>
          
@@ -38,8 +48,8 @@ const NavBar = ()=>{
            ]
        }else{
          return [
-          <li  key="6"><Link to="/signin">Signin</Link></li>,
-          <li  key="7"><Link to="/signup">Signup</Link></li>
+          <li className="navLink"  key="6"><Link to="/signin">Signin</Link></li>,
+          <li className="navLink" key="7"><Link to="/signup">Signup</Link></li>
          
          ]
        }
@@ -48,7 +58,7 @@ const NavBar = ()=>{
 
      const fetchUsers = (query)=>{
         setSearch(query)
-        fetch('/search-users',{
+        fetch('https://vast-river-59602.herokuapp.com/search-users',{
           method:"post",
           headers:{
             "Content-Type":"application/json"
@@ -63,14 +73,14 @@ const NavBar = ()=>{
      }
     return(
         <nav>
-        <div className="nav-wrapper white">
+        <div className="nav-wrapper navLink #d32f2f red darken-2">
           <Link to={user?"/":"/signin"} className="brand-logo left">Travel Diaries</Link>
           <ul id="nav-mobile" className="right">
              {renderList()}
   
           </ul>
         </div>
-        <div id="modal1" class="modal" ref={searchModal} style={{color:"black"}}>
+        <div id="modal1" className="modal" ref={searchModal} style={{color:"black"}}>
           <div className="modal-content">
           <input
             type="text"
@@ -89,7 +99,8 @@ const NavBar = ()=>{
               </ul>
           </div>
           <div className="modal-footer">
-            <button className="modal-close waves-effect waves-green btn-flat" onClick={()=>setSearch('')}>close</button>
+            <button className="modal-close create_btn" onClick={()=>setSearch('')}><i class="medium material-icons">
+            highlight_off</i></button>
           </div>
         </div>
       </nav>
