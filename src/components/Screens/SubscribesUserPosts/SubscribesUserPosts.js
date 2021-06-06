@@ -7,7 +7,7 @@ const SubscribesUserPosts  = ()=>{
       return state.users;
     })
     useEffect(()=>{
-       fetch('/getsubpost',{
+       fetch('https://vast-river-59602.herokuapp.com/getsubpost',{
            headers:{
                "Authorization":"Bearer "+localStorage.getItem("jwt")
            }
@@ -19,7 +19,7 @@ const SubscribesUserPosts  = ()=>{
     },[])
 
     const likePost = (id)=>{
-          fetch('/like',{
+          fetch('https://vast-river-59602.herokuapp.com/like',{
               method:"put",
               headers:{
                   "Content-Type":"application/json",
@@ -44,7 +44,7 @@ const SubscribesUserPosts  = ()=>{
           })
     }
     const unlikePost = (id)=>{
-          fetch('/unlike',{
+          fetch('https://vast-river-59602.herokuapp.com/unlike',{
               method:"put",
               headers:{
                   "Content-Type":"application/json",
@@ -70,7 +70,7 @@ const SubscribesUserPosts  = ()=>{
     }
 
     const makeComment = (text,postId)=>{
-          fetch('/comment',{
+          fetch('https://vast-river-59602.herokuapp.com/comment',{
               method:"put",
               headers:{
                   "Content-Type":"application/json",
@@ -97,7 +97,7 @@ const SubscribesUserPosts  = ()=>{
     }
 
     const deletePost = (postid)=>{
-        fetch(`/deletepost/${postid}`,{
+        fetch(`https://vast-river-59602.herokuapp.com/deletepost/${postid}`,{
             method:"delete",
             headers:{
                 Authorization:"Bearer "+localStorage.getItem("jwt")

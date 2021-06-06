@@ -9,7 +9,8 @@ const Home  = ()=>{
     useEffect(()=>{
        fetch('https://vast-river-59602.herokuapp.com/allpost',{
            headers:{
-               "Authorization":"Bearer "+localStorage.getItem("jwt")
+               "Authorization":"Bearer "+localStorage.getItem("jwt"),
+               'Accept': 'application/json'
            }
        }).then(res=>res.json())
        .then(result=>{
@@ -19,7 +20,7 @@ const Home  = ()=>{
     },[])
 
     const likePost = (id)=>{
-          fetch('/like',{
+          fetch('https://vast-river-59602.herokuapp.com/like',{
               method:"put",
               headers:{
                   "Content-Type":"application/json",
@@ -43,7 +44,7 @@ const Home  = ()=>{
           })
     }
     const unlikePost = (id)=>{
-          fetch('/unlike',{
+          fetch('https://vast-river-59602.herokuapp.com/unlike',{
               method:"put",
               headers:{
                   "Content-Type":"application/json",
@@ -68,7 +69,7 @@ const Home  = ()=>{
     }
 
     const makeComment = (text,postId)=>{
-          fetch('/comment',{
+          fetch('https://vast-river-59602.herokuapp.com/comment',{
               method:"put",
               headers:{
                   "Content-Type":"application/json",
@@ -95,7 +96,7 @@ const Home  = ()=>{
     }
 
     const deletePost = (postid)=>{
-        fetch(`/deletepost/${postid}`,{
+        fetch(`https://vast-river-59602.herokuapp.com/deletepost/${postid}`,{
             method:"delete",
             headers:{
                 Authorization:"Bearer "+localStorage.getItem("jwt")
@@ -112,7 +113,7 @@ const Home  = ()=>{
    return (
        <div className="home">
            {
-               data.map(item=>{
+               data?.map(item=>{
                    return(
                        <div className="card home-card" key={item._id}>
                             <h5 style={{padding:"5px"}}><Link to={item.postedBy._id !== state._id?"/profile/"+item.postedBy._id :"/profile"  }>{item.postedBy.name}</Link> {item.postedBy._id == state._id 

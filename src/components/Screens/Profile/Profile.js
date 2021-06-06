@@ -10,7 +10,7 @@ const Profile  = ()=>{
     })
     const dispatch = useDispatch();
     useEffect(()=>{
-       fetch('/mypost',{
+       fetch('https://vast-river-59602.herokuapp.com/mypost',{
            headers:{
                "Authorization":"Bearer "+localStorage.getItem("jwt")
            }
@@ -34,7 +34,7 @@ const Profile  = ()=>{
         .then(data=>{
     
        
-           fetch('/updatepic',{
+           fetch('https://vast-river-59602.herokuapp.com/updatepic',{
                method:"put",
                headers:{
                    "Content-Type":"application/json",
@@ -84,8 +84,8 @@ const Profile  = ()=>{
                    <h5>{state?state.email:"loading"}</h5>
                    <div style={{display:"flex",justifyContent:"space-between",width:"108%"}}>
                        <h6>{mypics.length} posts</h6>
-                       <h6>{state?state.followers.length:"0"} followers</h6>
-                       <h6>{state?state.following.length:"0"} following</h6>
+                       <h6>{state?state?.followers?.length:"0"} followers</h6>
+                       <h6>{state?state?.following?.length:"0"} following</h6>
                    </div>
 
                </div>

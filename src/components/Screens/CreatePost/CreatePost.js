@@ -26,7 +26,7 @@ const CreatePost = () => {
       .catch((err) => {
         console.log(err);
       });
-    fetch("/createpost", {
+    fetch("https://vast-river-59602.herokuapp.com/createpost", {
       method: "post",
       headers: { "Content-Type": "application/json",
       "Authorization":"Bearer "+localStorage.getItem("jwt") },

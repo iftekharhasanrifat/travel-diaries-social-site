@@ -48,7 +48,7 @@ const NavBar = ()=>{
 
      const fetchUsers = (query)=>{
         setSearch(query)
-        fetch('/search-users',{
+        fetch('https://vast-river-59602.herokuapp.com/search-users',{
           method:"post",
           headers:{
             "Content-Type":"application/json"

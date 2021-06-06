@@ -12,7 +12,7 @@ const UserProfile  = ()=>{
     const [showfollow,setShowFollow] = useState(true)
     const signedInUser = JSON.parse(localStorage.getItem('user')); 
     useEffect(()=>{
-       fetch(`/user/${userid}`,{
+       fetch(`https://vast-river-59602.herokuapp.com/user/${userid}`,{
            headers:{
                "Authorization":"Bearer "+localStorage.getItem("jwt")
            }
@@ -25,7 +25,7 @@ const UserProfile  = ()=>{
 
 
     const followUser = ()=>{
-        fetch('/follow',{
+        fetch('https://vast-river-59602.herokuapp.com/follow',{
             method:"put",
             headers:{
                 "Content-Type":"application/json",
@@ -53,7 +53,7 @@ const UserProfile  = ()=>{
         })
     }
     const unfollowUser = ()=>{
-        fetch('/unfollow',{
+        fetch('https://vast-river-59602.herokuapp.com/unfollow',{
             method:"put",
             headers:{
                 "Content-Type":"application/json",
