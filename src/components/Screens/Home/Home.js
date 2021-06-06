@@ -7,7 +7,7 @@ const Home  = ()=>{
       return state.users;
     })
     useEffect(()=>{
-       fetch('/allpost',{
+       fetch('https://vast-river-59602.herokuapp.com/allpost',{
            headers:{
                "Authorization":"Bearer "+localStorage.getItem("jwt")
            }
