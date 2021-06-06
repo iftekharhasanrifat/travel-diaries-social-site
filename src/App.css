@@ -69,7 +69,14 @@ a{
   left: auto !important;
 }
 
+.collection a{
+  color: black !important
+}
 
 .material-icons:hover{
   cursor: pointer;
+}
+
+.modal-close:active{
+  background-color: white!important;
 }
