@@ -10,7 +10,6 @@ const Home  = ()=>{
        fetch('https://vast-river-59602.herokuapp.com/allpost',{
            headers:{
                "Authorization":"Bearer "+localStorage.getItem("jwt"),
-            //    'Accept': 'application/json'
            }
        }).then(res=>res.json())
        .then(result=>{
