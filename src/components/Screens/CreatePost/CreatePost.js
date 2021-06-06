@@ -65,19 +65,20 @@ const CreatePost = () => {
     >
       <input
         type="text"
-        placeholder="title"
+        placeholder="Caption"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
       />
       <input
         type="text"
-        placeholder="body"
+        placeholder="Body"
         onChange={(e) => setBody(e.target.value)}
         value={body}
       />
       <div className="file-field input-field">
-        <div className="btn #64b5f6 blue darken-1">
-          <span>Upload Image</span>
+        <div className="create_btn">
+        <i class="small material-icons">
+add_photo_alternate</i>
           <input type="file" onChange={(e) => setImage(e.target.files[0])} />
         </div>
         <div className="file-path-wrapper">
@@ -86,9 +87,11 @@ const CreatePost = () => {
       </div>
       <button
         onClick={() => postDetails()}
-        className="btn waves-effect waves-light #64b5f6 blue darken-1"
+        className="create_btn waves-effect waves-light"
       >
-        Submit Post
+        <i class="small material-icons">
+send</i>
+
       </button>
     </div>
   );

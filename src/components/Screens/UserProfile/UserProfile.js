@@ -1,12 +1,9 @@
 import React,{useEffect,useState} from 'react'
 import {updateData} from '../../../redux/action/userAction'
 import {useParams} from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 const UserProfile  = ()=>{
     const [userProfile,setProfile] = useState(null)
-    const state = useSelector((state)=>{
-      return state.users;
-    })
     const dispatch = useDispatch();
     const {userid} = useParams()
     const [showfollow,setShowFollow] = useState(true)

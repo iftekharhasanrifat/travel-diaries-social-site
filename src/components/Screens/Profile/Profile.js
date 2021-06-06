@@ -92,8 +92,9 @@ const Profile  = ()=>{
            </div>
         
             <div className="file-field input-field" style={{margin:"10px"}}>
-            <div className="btn #64b5f6 blue darken-1">
-                <span>Update pic</span>
+            <div className="create_btn">
+            <i class="small material-icons">
+            add_a_photo</i>
                 <input type="file" onChange={(e)=>updatePhoto(e.target.files[0])} />
             </div>
             <div className="file-path-wrapper">

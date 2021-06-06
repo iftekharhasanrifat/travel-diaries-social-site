@@ -7,7 +7,7 @@ const NewPassword  = ()=>{
     const {token} = useParams()
     console.log(token)
     const PostData = ()=>{
-        fetch("/new-password",{
+        fetch("https://vast-river-59602.herokuapp.com/new-password",{
             method:"post",
             headers:{
                 "Content-Type":"application/json"
